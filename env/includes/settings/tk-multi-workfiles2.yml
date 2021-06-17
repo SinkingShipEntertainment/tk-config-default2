@@ -253,12 +253,41 @@ settings.tk-multi-workfiles2.maya.asset_step:
       hierarchy: [step]
   location: "@apps.tk-multi-workfiles2.location"
 
+# asset_step_surfacing (SSE - DW 2020-10-01)
+settings.tk-multi-workfiles2.maya.asset_step_surfacing:
+  template_publish: maya_asset_publish_surfacing_arnold
+  template_publish_area: asset_publish_area_maya
+  template_work: maya_asset_work_surfacing_arnold
+  template_work_area: asset_work_area_maya
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    hierarchy: [sg_asset_type, code]
+    filters:
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    hierarchy: [sg_sequence, code]
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  location: "@apps.tk-multi-workfiles2.location"
+
 # shot_step
 settings.tk-multi-workfiles2.maya.shot_step:
   template_publish: maya_shot_publish
   template_publish_area: shot_publish_area_maya
   template_work: maya_shot_work
   template_work_area: shot_work_area_maya
+  #saveas_default_name: hook:name_resolver_from_ctx:task_name
+  #hook_scene_operation: "{config}/scene_operation_tk-maya.py"
   entities:
   - caption: Assets
     entity_type: Asset
@@ -633,20 +662,16 @@ settings.tk-multi-workfiles2.vred.asset_step:
         - [task_assignees, is, '{context.user}']
   hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"
   location: "@apps.tk-multi-workfiles2.location"
-
-################################################################################
-
 # ---- Mari
-
 settings.tk-multi-workfiles2.mari:
   show_change_context: true
   show_file_open: false
   show_file_save: false
   my_tasks_filters:
-   - [entity, type_is, Asset]
-   - [task_assignees, is, '{context.user}']
+    - [entity, type_is, Asset]
+    - [task_assignees, is, '{context.user}']
   entities:
-  - caption: Assets
+    - caption: Assets
     entity_type: Asset
     hierarchy: [sg_asset_type, code]
     filters:
@@ -655,4 +680,63 @@ settings.tk-multi-workfiles2.mari:
       filters:
       link_field: entity
       hierarchy: [step]
+################################################################################
+# --- SSE add (-DW 2020-02-04)
+################################################################################
+
+# -- natron
+
+settings.tk-multi-workfiles2.natron.project:
+  allow_task_creation: true
+  create_new_task_hook: "{self}/create_new_task.py"
+  custom_actions_hook: "{self}/custom_actions.py"
+  entities:
+  - caption: Assets
+    entity_type: Task
+    filters:
+    - [entity, type_is, Asset]
+    hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
+  - caption: Shots
+    entity_type: Task
+    filters:
+    - [entity, type_is, Shot]
+    hierarchy: [entity.Shot.sg_sequence, entity, step, content]
+  file_extensions: []
+  hook_copy_file: "{self}/copy_file.py"
+  hook_filter_publishes: default
+  hook_filter_work_files: default
+  hook_scene_operation: "{engine}/tk-multi-workfiles2/scene_operation_tk-natron.py"
+  launch_at_startup: false
+  my_tasks_extra_display_fields: []
+  saveas_default_name: scene
+  saveas_prefer_version_up: false
+  show_my_tasks: true
+  template_publish:
+  template_publish_area:
+  template_work:
+  template_work_area:
+  version_compare_ignore_fields: []
+  location: "@apps.tk-multi-workfiles2.location"
+
+# asset_step
+settings.tk-multi-workfiles2.natron.asset_step:
+  hook_scene_operation: "{engine}/tk-multi-workfiles2/scene_operation_tk-natron.py"
+  template_publish: natron_asset_publish
+  template_publish_area: asset_publish_area_natron
+  template_work: natron_asset_work
+  template_work_area: asset_work_area_natron
+  saveas_default_name: scene
+  saveas_prefer_version_up: false
+  version_compare_ignore_fields: []
+  file_extensions: []
+
+  location: "@apps.tk-multi-workfiles2.location"
+
+# shot_step
+settings.tk-multi-workfiles2.natron.shot_step:
+  hook_scene_operation: "{engine}/tk-multi-workfiles2/scene_operation_tk-natron.py"
+  template_publish: natron_shot_publish
+  template_publish_area: shot_publish_area_natron
+  template_work: natron_shot_work
+  template_work_area: shot_work_area_natron
   location: "@apps.tk-multi-workfiles2.location"

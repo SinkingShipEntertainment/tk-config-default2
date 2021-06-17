@@ -31,3 +31,18 @@ path.windows.hiero: C:\Program Files\Nuke12.1v4\Nuke12.1.exe
 path.linux.rv: "rv"
 path.mac.rv: "/Applications/RV.app"
 path.windows.rv: C:\Program Files\Shotgun\RV-7.9.0\bin\rv.exe
+
+# --- SSE adds (Shervin 2020-02-06)
+# Natron
+path.linux.natron: "Natron"
+path.mac.natron: "/Applications/Natron.app"
+path.windows.natron: C:\Program Files\INRIA\Natron-2.3.14\bin\Natron.exe
+
+# Sinking Ship Publish and Harvest
+path.windows.harvest: X:\tools\sinking_ship\shotgun\RunHarvestPublish.bat
+
+# Sinking Ship Copy Asset
+path.windows.copyasset: X:\tools\win_tools\CopyAsset\run_CopyAsset.bat
+
+# Sinking Ship Aces Conversion
+path.windows.acesconversion: X:\tools\pipeline_repos\studio_pipeline_2_5_repo\shotgun\RunAcesConversion.bat

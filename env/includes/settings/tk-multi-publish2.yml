@@ -168,13 +168,16 @@ settings.tk-multi-publish2.mari.asset_step:
 # ---- Maya
 
 # asset step
+# SSE - Using collector & publish_file hooks for QCTool (DW 2021-01-21)
 settings.tk-multi-publish2.maya.asset_step:
-  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  #collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  # Comment out entry by Unreal config until we know why config doesn't load
+  collector: "{self}/collector.py:{config}/tk-multi-publish2/tk-maya/basic/collector.py"
   collector_settings:
       Work Template: maya_asset_work
   publish_plugins:
   - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_file.py"
     settings: {}
   - name: Upload for review
     hook: "{self}/upload_version.py"
@@ -182,25 +185,97 @@ settings.tk-multi-publish2.maya.asset_step:
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+  - name: Publish to ShotGird
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
         Publish Template: maya_asset_publish
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
+#  - name: Publish to Shotgun
+#    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
+#    settings:
+#        Publish Template: asset_alembic_cache
+  # ABC publish (DW 2020-07-28)
+  - name: Publish to Shotgun (Alembic)
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_file.py:{config}/tk-multi-publish2/{engine_name}/basic/publish_abc.py"
     settings:
         Publish Template: asset_alembic_cache
+  # ASS publish (DW 2020-07-28)
+  - name: Publish to Shotgun (Arnold Standin)
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_file.py:{config}/tk-multi-publish2/{engine_name}/basic/publish_ass.py"
+    settings:
+        Publish Template: asset_arnold_standin
+  # FBX publish
+  - name: Publish to Shotgun (FBX)
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_file.py:{config}/tk-multi-publish2/{engine_name}/basic/publish_fbx.py"
+    settings:
+        Publish Template: maya_asset_fbx_publish
+  # SSE - Unreal turntable related, commented out for now...
+  # - name: Publish and Submit for Review
+  #   hook: "{self}/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_turntable.py"
+  #   settings:
+  #       Work Template: maya_ue4_turntable_render
+  #       Publish Template: maya_ue4_turntable_publish
+  #       Unreal Engine Version: "4.25"
+  #       Unreal Project Path: "{config}/tk-multi-publish2/tk-maya/unreal/resources/{unreal_engine_version}/turntable/turntable.uproject"
+  #       Turntable Map Path: "/Game/turntable/level/turntable.umap"
+  #       Sequence Path: "/Game/turntable/sequence/turntable_sequence.turntable_sequence"
+  #       Turntable Assets Path: "/Game/maya_turntable_assets/"   # note the trailing '/' must be included
+  # SSE - Using post_phase to migrate legacy+ config post_publish methods (DW 2020-08-11)
+  post_phase: "{self}/post_phase.py:{config}/tk-multi-publish2/post_phase.py"
+  help_url: *help_url
+  location: "@apps.tk-multi-publish2.location"
+
+# asset step surfacing (SSE - DW 2020-10-01)
+# SSE - Using collector & publish_file hooks for QCTool (DW 2021-01-21)
+settings.tk-multi-publish2.maya.asset_step_surfacing:
+  #collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector: "{self}/collector.py:{config}/tk-multi-publish2/tk-maya/basic/collector.py"
+  collector_settings:
+      Work Template: maya_asset_work_surfacing_arnold
+  publish_plugins:
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_file.py"
+    settings: {}
+  - name: Upload for review
+    hook: "{self}/upload_version.py"
+    settings: {}
+  - name: Begin file versioning
+    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+    settings: {}
+  - name: Publish to Shotgun (Maya file)
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+    # hook: "{self}/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_session.py"
+    settings:
+        Publish Template: maya_asset_publish_surfacing_arnold
+  # ABC publish (DW 2020-07-28)
+  - name: Publish to Shotgun (Alembic)
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_file.py:{config}/tk-multi-publish2/{engine_name}/basic/publish_abc.py"
+    settings:
+        Publish Template: asset_alembic_cache
+  # ASS publish (DW 2020-07-28)
+  - name: Publish to Shotgun (Arnold Standin)
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_file.py:{config}/tk-multi-publish2/{engine_name}/basic/publish_ass.py"
+    settings:
+        Publish Template: asset_arnold_standin_surfacing
+  # Texture "publish" (DW 2020-09-18)
+  - name: Publish Session Textures
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_file.py:{config}/tk-multi-publish2/{engine_name}/basic/publish_textures.py"
+    settings:
+        Publish Template: asset_publish_tex_list
+  # SSE - Using post_phase to migrate legacy+ config post_publish methods (DW 2020-08-11)
+  post_phase: "{self}/post_phase.py:{config}/tk-multi-publish2/post_phase.py"
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
 # shot step
+# SSE - Using collector & publish_file hooks for QCTool (DW 2021-01-21)
 settings.tk-multi-publish2.maya.shot_step:
-  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  # collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector: "{self}/collector.py:{config}/tk-multi-publish2/tk-maya/basic/collector.py"
   collector_settings:
       Work Template: maya_shot_work
   publish_plugins:
   - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_file.py"
     settings: {}
   - name: Upload for review
     hook: "{self}/upload_version.py"
@@ -208,10 +283,12 @@ settings.tk-multi-publish2.maya.shot_step:
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
         Publish Template: maya_shot_publish
+  # SSE - Using post_phase to migrate legacy+ config post_publish methods (DW 2020-08-11)
+  post_phase: "{self}/post_phase.py:{config}/tk-multi-publish2/post_phase.py"
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -375,7 +452,8 @@ settings.tk-multi-publish2.aftereffects.asset_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/make_rendering.py"
     settings: {}
   - name: Copy Renderings to Publish Location
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/copy_rendering.py"
+    #hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/copy_rendering.py"
+    hook: "{self}/publish_file.py:{config}/tk-aftereffects/tk-multi-publish2/copy_rendering.py"
     settings:
         Publish Sequence Template: aftereffects_asset_render_pub_mono
         Publish Movie Template: aftereffects_asset_render_movie
@@ -389,7 +467,8 @@ settings.tk-multi-publish2.aftereffects.asset_step:
     settings:
         Publish Template: aftereffects_asset_publish
   - name: Upload for review
-    hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
+    #hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
+    hook: "{self}/upload_version.py:{config}/tk-aftereffects/tk-multi-publish2/upload_version.py"
     settings:
         Movie Output Module: Lossless with Alpha
   help_url: *help_url
@@ -411,12 +490,15 @@ settings.tk-multi-publish2.aftereffects.shot_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/make_rendering.py"
     settings: {}
   - name: Copy Renderings to Publish Location
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/copy_rendering.py"
+    #hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/copy_rendering.py"
+    hook: "{self}/publish_file.py:{config}/tk-aftereffects/tk-multi-publish2/copy_rendering.py"
     settings:
-        Publish Sequence Template: aftereffects_shot_render_pub_mono
+        #Publish Sequence Template: aftereffects_shot_render_pub_mono
         Publish Movie Template: aftereffects_shot_render_movie
-        Default Sequence Output Module: TIFF Sequence with Alpha
+        Publish Sequence Template: aftereffects_shot_render_exr_aces
+        #Default Sequence Output Module: TIFF Sequence with Alpha
         Default Movie Output Module: Lossless with Alpha
+        Default Sequence Output Module: ACES EXR
   - name: Publish Renderings to ShotGrid
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_rendering.py"
     settings: {}
@@ -425,9 +507,11 @@ settings.tk-multi-publish2.aftereffects.shot_step:
     settings:
         Publish Template: aftereffects_shot_publish
   - name: Upload for review
-    hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
+    #hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
+    hook: "{self}/upload_version.py:{config}/tk-aftereffects/tk-multi-publish2/upload_version.py"
     settings:
-        Movie Output Module: Lossless with Alpha
+        #Movie Output Module: Lossless with Alpha
+        Movie Output Module: sRGB AVI
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -478,7 +562,6 @@ settings.tk-multi-publish2.motion_builder.shot_step:
       Publish Template: mobu_shot_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
-
 
 ################################################################################
 
@@ -556,5 +639,92 @@ settings.tk-multi-publish2.vred.asset_step:
    - name: Upload for review
      hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
      settings: {}
+  help_url: *help_url
+  location: "@apps.tk-multi-publish2.location"
+
+################################################################################
+
+# ---- Unreal
+
+# project
+settings.tk-multi-publish2.unreal.project:
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  publish_plugins:
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py"
+    settings: {}
+  - name: Upload for review
+    hook: "{self}/upload_version.py"
+    settings: {}
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+    settings: {}
+  - name: Export FBX and Publish to Shotgun
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_asset.py"
+    settings:
+        Publish Template: unreal_asset_publish
+  - name: Render Movie and Submit for Review
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_movie.py"
+    settings:
+        Publish Template: unreal_movie_publish
+  help_url: *help_url
+  location: "@apps.tk-multi-publish2.location"
+
+################################################################################
+
+# --- SSE add (-DW 2020-02-04)
+# ---- Natron----
+
+# asset step
+settings.tk-multi-publish2.natron.asset_step:
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector_settings:
+      Work Template: natron_asset_work
+  publish_plugins:
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py"
+    settings: {}
+  - name: Upload for review
+    hook: "{self}/upload_version.py"
+    settings: {}
+  - name: Begin file versioning
+    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+    settings: {}
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+    settings:
+        Publish Template: natron_asset_publish
+  # - name: Submit for Review
+  #   hook: "{engine}/tk-multi-publish2/basic/submit_for_review.py"
+  #   settings: {}
+  help_url: *help_url
+  location: "@apps.tk-multi-publish2.location"
+
+# shot step
+settings.tk-multi-publish2.natron.shot_step:
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector_settings:
+      Work Template: natron_shot_work
+  publish_plugins:
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py"
+    settings: {}
+  - name: Upload for review
+    hook: "{self}/upload_version.py"
+    settings: {}
+  - name: Begin file versioning
+    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+    settings: {}
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+    settings:
+        Publish Template: natron_shot_publish
+  # - name: Submit for Review
+  #   hook: "{engine}/tk-multi-publish2/basic/submit_for_review.py"
+  #   settings: {}
+  # - name: Update Flame Clip
+  #   hook: "{engine}/tk-multi-publish2/basic/natron_update_flame_clip.py"
+  #   settings:
+  #       Flame Clip Template: flame_shot_clip
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"

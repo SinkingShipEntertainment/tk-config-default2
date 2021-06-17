@@ -67,4 +67,144 @@ settings.tk-nuke-writenode.shot:
     settings: {}
     tank_type: Rendered Image
     tile_color: []
+  # adent 07/08/2021 - remove this one and see if anyone complains
+  #- file_type: exr
+  #  name: Comp EXR, Aces2065
+  #  promote_write_knobs: []
+  #  proxy_publish_template:
+  #  proxy_render_template:
+  #  publish_template: nuke_shot_comp_render_pub_exr
+  #  render_template: nuke_shot_comp_render_exr
+  #  settings: {channels: rgba, colorspace: ACES - ACES2065-1, write_ACES_compliant_EXR: true, compression: Zip
+  #      (1 scanline), autocrop: true}
+  #  tank_type: Rendered Image
+  #  tile_color: []
+  # --- DonkeyHodie ~ DW (2020-03-12)
+  - file_type: exr
+    name: Comp EXR, AcesRec709, DWAB 45 (final)
+    promote_write_knobs: [dw_compression_level, datatype]
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_shot_comp_render_pub_exr
+    render_template: nuke_shot_comp_render_exr
+    settings: {channels: rgb, colorspace: Output - Rec.709, write_ACES_compliant_EXR: false, compression: DWAB,
+        dw_compression_level: 45, autocrop: true, datatype: 16 bit half}
+    tank_type: Rendered Image
+    tile_color: []
+  # --- Pipeline 2.0 (edit/review requirements) ~ DW (2020-03-16)
+  # --- Pipeline 2.0 - "FINAL"
+  - file_type: exr
+    name: Comp EXR, Aces2065, DWAB 45 (final)
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_shot_comp_render_pub_exr
+    render_template: nuke_shot_comp_render_exr
+    settings: {channels: rgba, colorspace: ACES - ACES2065-1, write_ACES_compliant_EXR: false,
+      compression: DWAB, dw_compression_level: 45, autocrop: true, datatype: 16
+        bit half}
+    tank_type: Rendered Image
+    tile_color: []
+  # --- Pipeline 2.0 - "WIP"
+  - file_type: exr
+    name: Comp EXR, Aces2065, DWAB 400 (WIP)
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_shot_comp_render_pub_exr
+    render_template: nuke_shot_comp_render_exr
+    settings: {channels: rgba, colorspace: ACES - ACES2065-1, write_ACES_compliant_EXR: false,
+      compression: DWAB, dw_compression_level: 400, autocrop: true, datatype: 16
+        bit half}
+    tank_type: Rendered Image
+    tile_color: []
+  # --- Pipeline 2.5 - ACEScg - COMP
+  - file_type: exr
+    name: Comp EXR, AcesCG, DWAB 45 (final)
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_shot_render_acescg_pub_exr
+    render_template: nuke_shot_comp_render_acescg_exr
+    settings: {channels: rgba, colorspace: ACES - ACEScg, write_ACES_compliant_EXR: false,
+      compression: DWAB, dw_compression_level: 45, autocrop: true, datatype: 16
+        bit half}
+    tank_type: Rendered Image
+    tile_color: []
+  # --- Pipeline 2.5 - ACEScg - PIZ - COMP
+  - file_type: exr
+    name: Comp EXR, AcesCG, PIZ (final)
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_shot_render_acescg_pub_exr
+    render_template: nuke_shot_comp_render_acescg_exr
+    settings: {channels: rgba, colorspace: ACES - ACEScg, write_ACES_compliant_EXR: false,
+      compression: PIZ Wavelet (32 scanlines), dw_compression_level: 45, autocrop: true, datatype: 16
+        bit half}
+    tank_type: Rendered Image
+    tile_color: []
+  # --- Pipeline 2.5 - ACEScg - Lighting Slap Comp
+  - file_type: exr
+    name: Light EXR, AcesCG, DWAB 45 (final)
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_shot_render_acescg_pub_exr
+    render_template: nuke_shot_light_render_acescg_exr
+    settings: {channels: rgba, colorspace: ACES - ACEScg, write_ACES_compliant_EXR: false,
+      compression: DWAB, dw_compression_level: 45, autocrop: true, datatype: 16 bit half}
+    tank_type: Rendered Image
+    tile_color: []
+  # --- Pipeline 2.5 - ACEScg - ROTO
+  - file_type: exr
+    name: Roto EXR, AcesCG, DWAB 400 (final)
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_shot_render_acescg_pub_exr
+    render_template: nuke_shot_roto_render_acescg_exr
+    settings: {channels: rgba, colorspace: ACES - ACEScg, write_ACES_compliant_EXR: false,
+      compression: DWAB, dw_compression_level: 400, autocrop: true, datatype: 16 bit half}
+    tank_type: Rendered Image
+    tile_color: []
+  # --- Pipeline 2.5 - ACES2065-1 - RGB MATTES
+  - file_type: exr
+    name: RGB MATTE EXR, Aces2065, DWAB 45 (final)
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_shot_comp_render_pub_exr # adent 07/08/2021 - doesn't make sense
+    render_template: nuke_output_rgb_matte_exr
+    settings: {channels: rgb, colorspace: ACES - ACES2065-1, write_ACES_compliant_EXR: false,
+      compression: DWAB, dw_compression_level: 45, autocrop: false, datatype: 16
+        bit half}
+    tank_type: Rendered Image
+    tile_color: []
+  # --- Pipeline 2.5 - ACEScg - RGB MATTES
+  - file_type: exr
+    name: RGB MATTE EXR, AcesCG, DWAB 45 (final)
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_shot_render_acescg_pub_exr # adent 07/08/2021 - doesn't make sense
+    render_template: nuke_output_rgb_matte_acescg_exr
+    settings: {channels: rgb, colorspace: ACES - ACEScg, write_ACES_compliant_EXR: false,
+      compression: DWAB, dw_compression_level: 45, autocrop: false, datatype: 16
+        bit half}
+    tank_type: Rendered Image
+    tile_color: []
+  # --- DEGRAIN
+  - file_type: exr
+    name: Degrain EXR, sRGB, Zip, 16-bit
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_shot_degrain_render_srgb_pub_exr
+    render_template: nuke_shot_degrain_render_srgb_exr
+    settings: {channels: rgba, colorspace: sRGB, datatype: 16 bit half, compression: Zip
+        (1 scanline)}
+    tank_type: Rendered Image
+    tile_color: []
   location: "@apps.tk-nuke-writenode.location"
+

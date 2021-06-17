@@ -34,6 +34,7 @@ engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
   version: v2.6.0
+# Desktop2
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
@@ -42,6 +43,7 @@ engines.tk-flame.location:
   type: app_store
   name: tk-flame
   version: v1.16.4
+# Houdini
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
@@ -62,6 +64,7 @@ engines.tk-nuke.location:
   type: app_store
   name: tk-nuke
   version: v0.14.1
+# Photoshop
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
@@ -78,3 +81,18 @@ engines.tk-vred.location:
   type: app_store
   name: tk-vred
   version: v2.1.0
+# Unreal
+engines.tk-unreal.location:
+  type: github_release
+  organization: ue4plugins
+  repository: tk-unreal
+  version: v1.1.0
+# -------------------------------------------- #
+# --- SSE additions below (-DW 2020-02-04) --- #
+# -------------------------------------------- #
+# Natron
+engines.tk-natron.location:
+  type: git
+  branch: master
+  path: https://github.com/diegogarciahuerta/tk-natron.git
+  version: v1.0.1

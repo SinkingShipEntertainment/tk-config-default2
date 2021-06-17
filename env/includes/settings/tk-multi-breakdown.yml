@@ -29,3 +29,8 @@ settings.tk-multi-breakdown.alias:
 settings.tk-multi-breakdown.vred:
   hook_scene_operations: '{engine}/tk-multi-breakdown/basic/scene_operations.py'
   location: "@apps.tk-multi-breakdown.location"
+
+# --- SSE add (-DW 2020-02-04)
+settings.tk-multi-breakdown.natron:
+  hook_scene_operations: '{engine}/tk-multi-breakdown/tk-natron_scene_operations.py'
+  location: "@apps.tk-multi-breakdown.location"

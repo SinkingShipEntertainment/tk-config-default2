@@ -208,17 +208,19 @@ settings.tk-multi-publish2.maya.asset_step:
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_file.py:{config}/tk-multi-publish2/{engine_name}/basic/publish_fbx.py"
     settings:
         Publish Template: maya_asset_fbx_publish
-  # SSE - Unreal turntable related, commented out for now...
-  # - name: Publish and Submit for Review
-  #   hook: "{self}/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_turntable.py"
-  #   settings:
-  #       Work Template: maya_ue4_turntable_render
-  #       Publish Template: maya_ue4_turntable_publish
-  #       Unreal Engine Version: "4.25"
-  #       Unreal Project Path: "{config}/tk-multi-publish2/tk-maya/unreal/resources/{unreal_engine_version}/turntable/turntable.uproject"
-  #       Turntable Map Path: "/Game/turntable/level/turntable.umap"
-  #       Sequence Path: "/Game/turntable/sequence/turntable_sequence.turntable_sequence"
-  #       Turntable Assets Path: "/Game/maya_turntable_assets/"   # note the trailing '/' must be included
+  # SSE - Unreal turntable related
+  - name: Publish and Submit for Review
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_turntable.py"
+    settings:
+      Work Template: maya_ue4_turntable_render
+      Publish Template: maya_ue4_turntable_publish
+      Unreal Engine Version: "4.26"
+      Unreal Project Path: "{config}/tk-multi-publish2/tk-maya/unreal/resources/{unreal_engine_version}/turntable/turntable.uproject"
+      Turntable Map Path: "/Game/turntable/level/turntable.umap"
+      Sequence Path: "/Game/turntable/sequence/turntable_sequence.turntable_sequence"
+      Turntable Assets Path: "/Game/maya_turntable_assets/"   # note the trailing '/' must be included
+  help_url: *help_url
+  location: "@apps.tk-multi-publish2.location"
   # SSE - Using post_phase to migrate legacy+ config post_publish methods (DW 2020-08-11)
   post_phase: "{self}/post_phase.py:{config}/tk-multi-publish2/post_phase.py"
   help_url: *help_url
@@ -263,8 +265,6 @@ settings.tk-multi-publish2.maya.asset_step_surfacing:
         Publish Template: asset_publish_tex_list
   # SSE - Using post_phase to migrate legacy+ config post_publish methods (DW 2020-08-11)
   post_phase: "{self}/post_phase.py:{config}/tk-multi-publish2/post_phase.py"
-  help_url: *help_url
-  location: "@apps.tk-multi-publish2.location"
 
 # shot step
 # SSE - Using collector & publish_file hooks for QCTool (DW 2021-01-21)

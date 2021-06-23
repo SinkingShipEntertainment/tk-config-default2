@@ -112,6 +112,7 @@ apps.tk-shotgun-launchvredreview.location:
   type: app_store
   name: tk-shotgun-launchvredreview
   version: v1.1.0
+  # hiero export
 apps.tk-hiero-export.location:
   type: app_store
   name: tk-hiero-export
@@ -121,6 +122,7 @@ apps.tk-hiero-openinshotgun.location:
   type: app_store
   name: tk-hiero-openinshotgun
   version: v0.4.0
+# houdini alembicnode
 apps.tk-houdini-alembicnode.location:
   type: app_store
   name: tk-houdini-alembicnode

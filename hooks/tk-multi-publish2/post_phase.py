@@ -295,7 +295,7 @@ class PostPhaseHook(HookBaseClass):
         Uses the 'initial LIGHT' concept as inspiration.
 
         Args:
-            scene_name (str): The full path to the curently open Maya file.
+            scene_name (str): The full path to the currently open Maya file.
             wk_fields (dict): Fields provided by the Shotgun Toolkit template
                 for the Project.
         """
@@ -320,7 +320,7 @@ class PostPhaseHook(HookBaseClass):
         behaviour of a simple file copy.
 
         Args:
-            scene_name (str): The full path to the curently open Maya file.
+            scene_name (str): The full path to the currently open Maya file.
             wk_fields (dict): Fields provided by the Shotgun Toolkit template
                 for the Project.
         """
@@ -359,7 +359,7 @@ class PostPhaseHook(HookBaseClass):
         and Yeti caching process as a Deadline Job on the render farm.
 
         Args:
-            scene_name (str): The full path to the curently open Maya file.
+            scene_name (str): The full path to the currently open Maya file.
             wk_fields (dict): Fields provided by the Shotgun Toolkit template
                 for the Project.
         """
@@ -394,7 +394,7 @@ class PostPhaseHook(HookBaseClass):
         Alembic and Yeti caching process as a Deadline Job on the render farm.
 
         Args:
-            scene_name (str): The full path to the curently open Maya file.
+            scene_name (str): The full path to the currently open Maya file.
             wk_fields (dict): Fields provided by the Shotgun Toolkit template
                 for the Project.
         """
@@ -421,7 +421,7 @@ class PostPhaseHook(HookBaseClass):
         'RenderSetup', and export both to the relevant locations if found.
 
         Args:
-            scene_name (str): The full path to the curently open Maya file.
+            scene_name (str): The full path to the currently open Maya file.
             wk_fields (dict): Fields provided by the Shotgun Toolkit template
                 for the Project.
         """

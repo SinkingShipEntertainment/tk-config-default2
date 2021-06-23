@@ -418,6 +418,15 @@ paths:
         #definition: '@shot_root/publish/maya/{name}.{Step}.v{version}.{maya_extension}'
         definition: '@shot_root/publish/maya/{Shot}.[{name}.]{Step}.v{version}.{maya_extension}'
         root_name: 'primary'
+    maya_shot_fbx_publish:
+        #definition: '@shot_root/publish/maya/{name}.{Step}.v{version}.{maya_extension}'
+        #definition: '@shot_root/publish/maya/{Shot}.[{name}.]{Step}.v{version}.{maya_extension}'
+        # We want the ability to publish FBX within the ANIM step and
+        # export it to a versioned folder. For example:
+        # Root Folder => N:\projects\HoneyBadger\sequences\BB001\BB001A1_0010\ANIM\publish\fbx\v003
+        # FBX name => BB001A1_0010_CarpenterPencil_ANIM_v003.fbx (AA 2020-12-18)
+        definition: '@shot_root/publish/fbx/v{version}/{Shot}.[{name}.]{Step}.v{version}.fbx'
+        root_name: 'primary'
 
     # >>> from old sg_config
     # Adding from tk-config-simple-master
@@ -781,6 +790,10 @@ paths:
     asset_alembic_cache:
         #definition: '@asset_root/publish/caches/{name}.v{version}.abc'
         definition: '@asset_root/publish/caches/{Asset}.[{name}.]{Step}.v{version}.abc'
+        root_name: 'primary'
+
+    asset_fur_cache:
+        definition: '@asset_root/publish/caches/{Asset}.{name}.GRM.v{version}.abc'
         root_name: 'primary'
 
     asset_arnold_standin:

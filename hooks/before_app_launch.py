@@ -125,6 +125,9 @@ class BeforeAppLaunch(tank.Hook):
         if engine_name == 'tk-natron':
             self._tk_natron_env_setup()
 
+        if engine_name == 'tk-unreal':
+            self._tk_unreal_env_setup()
+
     def return_proj_short_name(self, project_name):
         """Return the Project short name from a Shotgun DB query based on the
         Project's full name.
@@ -1022,6 +1025,27 @@ class BeforeAppLaunch(tank.Hook):
             m = 'No existing NATRON_PLUGIN_PATH in os.environ, creating...'
             LOGGER.debug(m)
             os.environ['NATRON_PLUGIN_PATH'] = '{}'.format(studio_na_paths)
+
+        # --- Tell the user what's up...
+        self.env_paths_sanity_check()
+
+    def _tk_unreal_env_setup(self):
+        """
+        Method to set up all the wanted environment
+        variables when launching an Unreal Engine session.
+        """
+        _setup = '_tk_unreal_env_setup'
+        self._headers(_setup)
+
+        project_name = os.environ['CURR_PROJECT']
+        repo_path = self._return_repo_path(project_name)
+        
+        config_site_packages = os.path.join(
+            repo_path, "unreal", "site-packages"
+        )
+
+        if not config_site_packages in os.environ.get("PYTHONPATH", ""):
+            os.environ["PYTHONPATH"] += os.pathsep + config_site_packages
 
         # --- Tell the user what's up...
         self.env_paths_sanity_check()

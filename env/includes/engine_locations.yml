@@ -34,30 +34,31 @@ engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
   version: v2.6.0
+# After Effects
+engines.tk-aftereffects.location:
+  type: app_store
+  name: tk-aftereffects
+  version: v0.2.1
+# Alias
+engines.tk-alias.location:
+  type: app_store
+  name: tk-alias
+  version: v2.0.10
+# Desktop
+engines.tk-desktop.location:
+  type: app_store
+  name: tk-desktop
+  version: v2.5.13
 # Desktop2
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
   version: v1.5.0
+  # Flame
 engines.tk-flame.location:
   type: app_store
   name: tk-flame
   version: v1.16.4
-# Desktop
-#engines.tk-desktop.location:
-#  type: app_store
-#  name: tk-desktop
-#  version: v2.5.11
-# Desktop2
-common.engines.tk-desktop2.location:
-  type: app_store
-  name: tk-desktop2
-  version: v1.4.3
-# Flame
-#engines.tk-flame.location:
-#  type: app_store
-#  name: tk-flame
-#  version: v1.15.6
 # Houdini
 engines.tk-houdini.location:
   type: app_store
@@ -67,14 +68,17 @@ engines.tk-mari.location:
   type: app_store
   name: tk-mari
   version: v1.3.1
+  # Maya
 engines.tk-maya.location:
   type: app_store
   name: tk-maya
   version: v0.11.1
+  # Motion Builder
 engines.tk-motionbuilder.location:
   type: app_store
   name: tk-motionbuilder
   version: v0.6.2
+# Nuke
 engines.tk-nuke.location:
   type: app_store
   name: tk-nuke
@@ -84,6 +88,7 @@ engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
   version: v1.9.0
+# Shell
 engines.tk-shell.location:
   type: app_store
   name: tk-shell
@@ -111,3 +116,8 @@ engines.tk-natron.location:
   branch: master
   path: https://github.com/diegogarciahuerta/tk-natron.git
   version: v1.0.1
+# Unreal
+engines.tk-unreal.location:
+  type: git
+  path: https://github.com/SinkingShipEntertainment/tk-unreal.git
+  version: v1.1.0

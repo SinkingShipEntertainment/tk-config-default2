@@ -1,0 +1,23 @@
+################################################################################
+
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+settings.tk-houdini-flipbook.asset_step:
+  work_file_template: houdini_asset_work
+  review_file_template: houdini_asset_review
+  location: "@apps.tk-houdini-flipbook.location"
+
+settings.tk-houdini-flipbook.shot_step:
+  work_file_template: houdini_shot_work
+  review_file_template: houdini_shot_review
+  location: "@apps.tk-houdini-flipbook.location"
+  settings.tk-multi-reviewsubmission.houdini:
+
+  # can I create custom hooks for custom apps that has no hooks? Waiting for support help.
+  # @CH
+  #render_media_hook: '{self}/render_media.py:{config}/tk-multi-reviewsubmission/{engine_name}/render_media.py'
+  #submitter_hook: '{self}/submitter_sgtk.py:{config}/tk-multi-reviewsubmission/submitter_sgtk.py'
+  #location: "@apps.tk-multi-reviewsubmission.location"

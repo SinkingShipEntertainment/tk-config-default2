@@ -518,6 +518,13 @@ paths:
         # definition: '@shot_root/publish/houdini/{name}.{Step}.v{version}.hip'
         definition: '@shot_publish_area_houdini/{Shot}.[{name}.]{Step}.v{version}.hip'
         root_name: 'primary'
+    
+    # Houdini review files - flibbpoks aka playblast
+    houdini_shot_review:
+        #definition: "@shot_work_area_houdini/version/{Shot}/{Shot}_{Step}_v{version}.mov"
+        definition: '@sequence_root/flipbooks/{Shot}/{Shot}.[{name}.]{Step}.v{version}.mov'
+        # using equivalent definition from maya step 
+        root_name: 'secondary'
 
     # @Shervin - Discuss with FX, Change alembic, render and mantra paths to secondary
     # Alembic caches
@@ -661,6 +668,11 @@ paths:
     # LIGHT - ACEScg (slapcomp)
     nuke_shot_light_render_acescg_exr:
         definition: '@sequence_root/renders/{Shot}/3d/lt_slap_comps/v{version}/{Shot}.Light.acescg.v{version}.{SEQ}.exr'
+        root_name: 'secondary'
+
+    # FX - ACEScg (slapcomp)
+    nuke_shot_fxrnd_render_acescg_exr:
+        definition: '@sequence_root/renders/{Shot}/3d/fx_slap_comps/v{version}/{Shot}.FX-RnD.acescg.v{version}.{SEQ}.exr'
         root_name: 'secondary'
 
     # ROTO - ACEScg
@@ -965,6 +977,12 @@ paths:
     houdini_asset_publish:
         definition: '@asset_root/publish/houdini/{Asset}.[{name}.]{Step}.v{version}.hip'
         root_name: 'primary'
+    # Houdini rewiew files
+    houdini_asset_review:
+        definition: '@asset_root/flipbooks/{Asset}/{Asset}.[{name}.]{Step}.v{version}.mov'
+        # using equivalent definition from maya step - is there any maya asset versioning
+        root_name: 'secondary'
+
     # Alembic caches
     houdini_asset_work_alembic_cache:
         # definition: '@asset_root/{Step}/work/{current_user_name}/houdini/cache/alembic/{houdini.node}/{Asset}_{name}_{houdini.node}.v{version}.abc'

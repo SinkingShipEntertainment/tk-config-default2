@@ -40,6 +40,18 @@ settings.tk-multi-reviewsubmission.maya:
   submitter_hook: '{self}/submitter_sgtk.py:{config}/tk-multi-reviewsubmission/submitter_sgtk.py'
   location: "@apps.tk-multi-reviewsubmission.location"
 
+# Houdini Flipbook
+settings.tk-multi-reviewsubmission.houdini:
+  # SSE: Refactoring from Maya playblast tool - @CH 
+  # display_name: Playblast to Create
+  # render_media_hook: '{self}/render_media.py:{self}/{engine_name}/render_media.py'
+  # submitter_hook: '{self}/submitter_create.py'
+  display_name: Flipbook to Shotgun
+  render_media_hook: '{self}/render_media.py:{config}/tk-multi-reviewsubmission/{engine_name}/render_media.py'
+  submitter_hook: '{self}/submitter_sgtk.py:{config}/tk-multi-reviewsubmission/submitter_sgtk.py'
+  location: "@apps.tk-multi-reviewsubmission.location"
+
+
 # Photoshop Submit for review
 settings.tk-multi-reviewsubmission.photoshop:
   display_name: Send for review

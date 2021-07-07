@@ -201,6 +201,8 @@ settings.tk-multi-workfiles2.houdini.shot_step:
   template_publish_area: shot_publish_area_houdini
   template_work: houdini_shot_work
   template_work_area: shot_work_area_houdini
+  # CH SSE - Custom call similar to afterscenesave.py scripts when the incoming operation is "save" - test purpose.
+  hook_scene_operation: "{self}/scene_operation_{engine_name}.py:{config}/tk-multi-workfiles2/scene_operation_{engine_name}.py"
   entities:
   - caption: Assets
     entity_type: Asset

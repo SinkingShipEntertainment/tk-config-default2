@@ -156,6 +156,18 @@ settings.tk-nuke-writenode.shot:
       compression: DWAB, dw_compression_level: 45, autocrop: true, datatype: 16 bit half}
     tank_type: Rendered Image
     tile_color: []
+  # --- Pipeline 2.5 - ACEScg - FX-RnD Slap Comp
+  - file_type: exr
+    name: FX-RnD EXR, AcesCG, DWAB 45 (final)
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_shot_render_acescg_pub_exr
+    render_template: nuke_shot_fxrnd_render_acescg_exr
+    settings: {channels: rgba, colorspace: ACES - ACEScg, write_ACES_compliant_EXR: false,
+      compression: DWAB, dw_compression_level: 45, autocrop: true, datatype: 16 bit half}
+    tank_type: Rendered Image
+    tile_color: []
   # --- Pipeline 2.5 - ACEScg - ROTO
   - file_type: exr
     name: Roto EXR, AcesCG, DWAB 400 (final)

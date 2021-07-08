@@ -224,8 +224,6 @@ settings.tk-multi-publish2.maya.asset_step:
 #      Turntable Map Path: "/Game/turntable/level/turntable.umap"
 #      Sequence Path: "/Game/turntable/sequence/turntable_sequence.turntable_sequence"
 #      Turntable Assets Path: "/Game/maya_turntable_assets/"   # note the trailing '/' must be included
-  help_url: *help_url
-  location: "@apps.tk-multi-publish2.location"
   # SSE - Using post_phase to migrate legacy+ config post_publish methods (DW 2020-08-11)
   post_phase: "{self}/post_phase.py:{config}/tk-multi-publish2/post_phase.py"
   help_url: *help_url
@@ -275,6 +273,8 @@ settings.tk-multi-publish2.maya.asset_step_surfacing:
         Publish Template: asset_publish_tex_list
   # SSE - Using post_phase to migrate legacy+ config post_publish methods (DW 2020-08-11)
   post_phase: "{self}/post_phase.py:{config}/tk-multi-publish2/post_phase.py"
+  help_url: *help_url
+  location: "@apps.tk-multi-publish2.location"
 
 # shot step
 # SSE - Using collector & publish_file hooks for QCTool (DW 2021-01-21)

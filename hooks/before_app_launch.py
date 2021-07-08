@@ -26,7 +26,8 @@ MY_SEP = ('=' * 10)
 
 # --- global variables...
 OCIO_CONFIG = 'X:/tools/aces/aces_1.0.3/config.ocio'
-
+# Third party dcc scripts and modules location
+THIRD_PARTY_PLUGINS = 'X:/tools/third_party'
 
 class BeforeAppLaunch(tank.Hook):
     """
@@ -430,6 +431,14 @@ class BeforeAppLaunch(tank.Hook):
 
         maya_tool_paths.reverse()
         script_paths.extend(maya_tool_paths)
+
+        # Note: This DOES appear in sys.path and PYTHONPATH but not in the
+        #       MAYA_SCRIPT_PATH - this will be read regardless.
+        # Add third party scripts location
+        third_party_maya_scripts_path = '{}/maya/{}/scripts'.format(
+            THIRD_PARTY_PLUGINS, self._version
+        )
+        script_paths.extend([third_party_maya_scripts_path])
 
         for sp in script_paths:
             sys.path.insert(0, sp)

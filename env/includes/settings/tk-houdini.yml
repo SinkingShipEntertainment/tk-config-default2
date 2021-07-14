@@ -18,6 +18,8 @@ includes:
 - ./tk-houdini-mantranode.yml
 - ./tk-multi-loader2.yml
 - ./tk-multi-publish2.yml
+#- ./tk-multi-reviewsubmission.yml # @CH
+- ./tk-houdini-flipbook.yml # @CH
 - ./tk-multi-screeningroom.yml
 - ./tk-multi-shotgunpanel.yml
 - ./tk-multi-snapshot.yml
@@ -52,11 +54,13 @@ settings.tk-houdini.asset_step:
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.houdini.asset_step"
     tk-houdini-alembicnode: "@settings.tk-houdini-alembicnode.asset_step"
     tk-houdini-mantranode: "@settings.tk-houdini-mantranode.asset_step"
+    tk-houdini-flipbook: "@settings.tk-houdini-flipbook.asset_step"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
+  - { app_instance: tk-houdini-flipbook, name: Flipbook to Shotgun... }  
   location: '@engines.tk-houdini.location'
 
 # project
@@ -67,6 +71,7 @@ settings.tk-houdini.project:
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+    #tk-multi-reviewsubmission: '@settings.tk-multi-reviewsubmission.houdini' # @CH
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-houdini.location"
@@ -91,6 +96,7 @@ settings.tk-houdini.shot:
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+    #tk-multi-reviewsubmission: '@settings.tk-multi-reviewsubmission.houdini' # @CH
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-houdini.location"
@@ -112,9 +118,12 @@ settings.tk-houdini.shot_step:
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.houdini.shot_step"
     tk-houdini-alembicnode: "@settings.tk-houdini-alembicnode.shot_step"
     tk-houdini-mantranode: "@settings.tk-houdini-mantranode.shot_step"
+    tk-houdini-flipbook: "@settings.tk-houdini-flipbook.shot_step"    
+    #tk-multi-reviewsubmission: '@settings.tk-multi-reviewsubmission.houdini' # @CH
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
+  - {app_instance: tk-houdini-flipbook, name: Flipbook to Shotgun...}  
   location: '@engines.tk-houdini.location'

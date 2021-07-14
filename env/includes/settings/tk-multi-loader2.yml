@@ -126,6 +126,8 @@ settings.tk-multi-loader2.maya:
     Photoshop Image: [texture_node, image_plane]
     Rendered Image: [texture_node, image_plane]
     Texture: [texture_node, image_plane]
+    UDIM Image: [udim_texture_node]
+  actions_hook: '{config}/tk-maya_actions.py'
   entities:
   - caption: Assets
     entity_type: Asset
@@ -143,6 +145,16 @@ settings.tk-multi-loader2.maya:
     - [task_assignees, is, "{context.user}"]
     - [project, is, "{context.project}"]
     hierarchy: [entity, content]
+  - caption: AssetRepo
+    hierarchy: [project, sg_asset_type, code]
+    entity_type: Asset
+    filters:
+    - [project, is, {type: Project, id: 260}]
+  - caption: Pipeline Assets
+    hierarchy: [project, sg_asset_type, code]
+    entity_type: Asset
+    filters:
+    - [project, is, {type: Project, id: 166}]
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"
 
@@ -387,5 +399,67 @@ settings.tk-multi-loader2.vred:
     - [project, is, '{context.project}']
     hierarchy: [entity, content]
   actions_hook: "{engine}/tk-multi-loader2/basic/scene_actions.py"
+  publish_filters: [["sg_status_list", "is_not", null]]
+  location: "@apps.tk-multi-loader2.location"
+
+# --- SSE add (-DW 2020-02-04)
+# Natron
+settings.tk-multi-loader2.natron:
+  actions_hook: '{engine}/tk-multi-loader2/tk-natron_actions.py'
+  action_mappings:
+    Alembic Cache: [read_node]
+    Flame Render: [read_node]
+    Flame Quicktime: [read_node]
+    Image: [read_node]
+    Movie: [read_node]
+    Photoshop Image: [read_node]
+    Rendered Image: [read_node]
+    Texture: [read_node]
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_asset_type, code]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_sequence, code]
+  - caption: My Tasks
+    entity_type: Task
+    filters:
+    - [task_assignees, is, '{context.user}']
+    - [project, is, '{context.project}']
+    hierarchy: [entity, content]
+  publish_filters: [["sg_status_list", "is_not", null]]
+  location: "@apps.tk-multi-loader2.location"
+
+# unreal
+settings.tk-multi-loader2.unreal:
+  action_mappings:
+    Motion Builder FBX: [import_content, import_level]
+    Maya FBX: [import_content]
+    Alembic Cache: [import_content]
+  # --- SSE: Override import behaviour with custom framework -AB (2021-06-11)
+  actions_hook: '{engine}/tk-multi-loader2/tk-unreal_actions.py:{config}/tk-multi-loader2/tk-unreal_actions.py'
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_asset_type, code]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_sequence, code]
+  - caption: My Tasks
+    type: Query
+    entity_type: Task
+    filters:
+    - [project, is, '{context.project}']
+    - [task_assignees, is, '{context.user}']
+    hierarchy: [entity, content]
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"

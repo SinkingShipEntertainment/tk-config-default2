@@ -69,3 +69,10 @@ settings.tk-alias.project:
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-alias.location"
+
+frameworks:
+  tk-framework-widget_v1.x.x:
+    location:
+      version: v1.1.0
+      type: app_store
+      name: tk-framework-widget

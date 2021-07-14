@@ -29,7 +29,7 @@ returned by the `pick_environment` hook. These files are:
 
 Each of these files provides an outline of the engines configured for that
 environment. These file don't typically need to be modified unless you're adding
-a new engine configuration into one of the environments.
+a new engine configuration into one of the environments. 
 
 The structure of these files is as follows:
 

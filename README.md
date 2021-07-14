@@ -10,3 +10,10 @@ For more information, go to the following url:
 https://support.shotgunsoftware.com/hc/en-us/articles/115000067493-Integrations-Admin-Guide
 
 -------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+Sinking Ship Entertainment Shotgun Toolkit Customized Configuration
+-------------------------------------------------------------------------
+
+Welcome to The Shotgun Pipeline Toolkit customized with Unreal engine
+for episodic series production!

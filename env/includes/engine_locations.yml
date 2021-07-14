@@ -22,10 +22,12 @@ engines.tk-3dsmax.location:
   type: app_store
   name: tk-3dsmax
   version: v1.1.6
+# After Effects
 engines.tk-aftereffects.location:
   type: app_store
   name: tk-aftereffects
   version: v0.3.0
+# Alias
 engines.tk-alias.location:
   type: app_store
   name: tk-alias
@@ -34,14 +36,22 @@ engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
   version: v2.6.0
+# Desktop
+engines.tk-desktop.location:
+  type: app_store
+  name: tk-desktop
+  version: v2.5.13
+# Desktop2
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
   version: v1.5.0
+  # Flame
 engines.tk-flame.location:
   type: app_store
   name: tk-flame
-  version: v1.16.2
+  version: v1.16.5
+  # Houdini
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
@@ -49,23 +59,28 @@ engines.tk-houdini.location:
 engines.tk-mari.location:
   type: app_store
   name: tk-mari
-  version: v1.3.1
+  version: v1.2.4
+  # Maya
 engines.tk-maya.location:
   type: app_store
   name: tk-maya
   version: v0.11.1
+  # Motion Builder
 engines.tk-motionbuilder.location:
   type: app_store
   name: tk-motionbuilder
-  version: v0.6.2
+  version: v0.5.2
+# Nuke
 engines.tk-nuke.location:
   type: app_store
   name: tk-nuke
   version: v0.14.1
+# Photoshop
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
   version: v1.9.0
+# Shell
 engines.tk-shell.location:
   type: app_store
   name: tk-shell
@@ -78,3 +93,17 @@ engines.tk-vred.location:
   type: app_store
   name: tk-vred
   version: v2.1.0
+# -------------------------------------------- #
+# --- SSE additions below (-DW 2020-02-04) --- #
+# -------------------------------------------- #
+# Natron
+engines.tk-natron.location:
+  type: git
+  branch: master
+  path: https://github.com/diegogarciahuerta/tk-natron.git
+  version: v1.0.1
+# Unreal
+engines.tk-unreal.location:
+  type: git
+  path: https://github.com/SinkingShipEntertainment/tk-unreal.git
+  version: v1.1.0

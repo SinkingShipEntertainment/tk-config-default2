@@ -1,0 +1,5 @@
+//Maya 2018 x64 Project Definition
+
+workspace -fr "scene" ".";
+workspace -fr "autoSave" "autosave";
+workspace -fr "images" "images";

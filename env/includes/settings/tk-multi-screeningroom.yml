@@ -24,4 +24,4 @@ settings.tk-multi-screeningroom.rv:
   rv_path_linux: "@path.linux.rv"
   rv_path_mac: "@path.mac.rv"
   rv_path_windows: "@path.windows.rv"
-  init_hook: "{self}/init.py"
+  init_hook: "{config}/tk-multi-screeningroom/init.py"

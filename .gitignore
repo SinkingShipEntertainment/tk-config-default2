@@ -1,3 +1,7 @@
+# ignore toolkit system files
+install_location.yml
+pipeline_configuration.yml
+
 # ---- ignore special files written during config setup
 
 core/app_store.yml
@@ -40,3 +44,10 @@ pip-log.txt
 # Jetbrains Pycharm
 .idea
 venv
+
+# ignore python caches
+__pycache__
+
+# ignore any IDE configuration folders (PyCharm, VSCode, etc.)
+.vs/
+.vscode/
